@@ -7,11 +7,11 @@ let lapHundrethEl = document.getElementById("lap-hundreth-el")
 let outputEl = document.getElementById("output-el")
 
 let timerActive = false
-let timer = 0
+let timerHundreth = 0
 let timerSeconds = 0
 
 let lapCount = 0
-let lapTimer = 0
+let lapHundreth = 0
 let lapHours = 0
 let lapMinutes = 0
 let lapSeconds = 0
@@ -27,7 +27,7 @@ function startClock() {
 function convertTimer(){
     // Increase Seconds 
     timerSeconds++
-    timer = 0
+    timerHundreth = 0
     
     if (timerSeconds == 60) {
         // Increase Minutes
@@ -61,12 +61,12 @@ function convertTimer(){
  
 function timerRunning() {
     if (timerActive) {
-        timer++
-        lapTimer++
+        timerHundreth++
+        lapHundreth++
         
-        timeHundrethEl.innerText = timer
-        lapHundrethEl.innerText = lapTimer
-        if (timer == 100) convertTimer()         
+        timeHundrethEl.innerText = timerHundreth
+        lapHundrethEl.innerText = lapHundreth
+        if (timerHundreth == 100) convertTimer()         
     }
 }   
 
@@ -91,13 +91,13 @@ function saveLap() {
 
 function resetAll() {
     timerActive = false
-    timer = 0
+    timerHundreth = 0
     timerHours = 0
     timerMinutes = 0
     timerSeconds = 0
     
     lapCount = 0
-    lapTimer = 0
+    lapHundreth = 0
     lapHours = 0
     lapMinutes = 0
     lapSeconds = 0
