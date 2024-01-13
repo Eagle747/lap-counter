@@ -39,11 +39,11 @@ button {
     letter-spacing: inherit;
 }
 
-#stop-btn, #reset-btn {
+.stop-btn, .reset-btn {
     background: darkred;
 }
 
-#start-btn, #lap-btn {
+.start-btn, .lap-btn {
     background: darkgreen;
 }
 
