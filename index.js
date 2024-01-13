@@ -8,13 +8,11 @@ let outputEl = document.getElementById("output-el")
 
 let timerActive = false
 let timerHundreth = 0
-let timerSeconds = 0
+let timerTime = 0   // The current time of the timer except for the hundreth seconds
 
 let lapCount = 0
-let lapHundreth = 0
-let lapHours = 0
-let lapMinutes = 0
-let lapSeconds = 0
+let lapHundreth = 0  // The current time of the lap except for the hundreth seconds
+let lapTime = 0
 
 function startClock() {
     timerActive = true
@@ -26,35 +24,21 @@ function startClock() {
 
 function convertTimer(){
     // Increase Seconds 
-    timerSeconds++
+    timerTime++
     timerHundreth = 0
+      
     
-    if (timerSeconds == 60) {
-        // Increase Minutes
-        timerMinutes++
-        timerSeconds = 0
-        
-        if (timerMinutes == 60) {
-            // Increase Hours
-            timerHours++
-            timerMinutes = 0
-        }    
-    }
-
     // Adjust time-el
     let text = ""
-    if (timerHours > 0) {
-        text += timerHours   // Hours
-        if (timerMinutes < 10) {
-            text += ":0"    // If hours add ":0" for minutes < 10
-            console.log("hours loop: ", text)
-        }
-    }        
-    text += timerMinutes + ":"  // minutes
-    if (timerSeconds < 10) {
+        // if (timerHours > 0) {
+        // text += timerHours   // Hours
+    
+            
+    // text += timerMinutes + ":"  // minutes
+    if (timerTime < 10) {
         text += "0"  // If seconds < 10 add "0"
     }
-    text += timerSeconds    // seconds    
+    text += timerTime    // seconds    
     timeEl.innerText = text
 }
     
@@ -92,23 +76,18 @@ function saveLap() {
 function resetAll() {
     timerActive = false
     timerHundreth = 0
-    timerHours = 0
-    timerMinutes = 0
-    timerSeconds = 0
+    timerTime = 0
     
     lapCount = 0
     lapHundreth = 0
-    lapHours = 0
-    lapMinutes = 0
-    lapSeconds = 0
-    console.log("1. HI HI")
+    lapTime = 0
     
     timeEl.innerText = "0:00"
     timeHundrethEl.innerText = "00"
     
     lapEl.innerText = `${lapCount} - 0:00`
     lapHundrethEl.innerText = "00"
-    console.log("2. HI HI")
+    console.log("Reset HI HI")
     
     outputEl.innerText = ""
     
