@@ -22,7 +22,7 @@ function startClock() {
     setInterval(timerRunning, 10)
 }
 
-function convertTimer(){
+function convertTime(){
     // Increase Seconds 
     timerTime++
     timerHundreth = 0
@@ -47,10 +47,21 @@ function timerRunning() {
     if (timerActive) {
         timerHundreth++
         lapHundreth++
-        
+
+        // timeHundreth > 100
+        if (timerHundreth == 100) {
+            convertTime()
+            timerHundreth=0         
+        }
+        // timeHundreth output
+        if (timerHundreth<10) {
+            timerHundreth='0' + timerHundreth
+        }
         timeHundrethEl.innerText = timerHundreth
+
+
+
         lapHundrethEl.innerText = lapHundreth
-        if (timerHundreth == 100) convertTimer()         
     }
 }   
 

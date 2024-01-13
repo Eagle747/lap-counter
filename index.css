@@ -47,10 +47,7 @@ button {
     background: darkgreen;
 }
 
-h3, p {
-    margin: 15px auto 0;
-}
-
 p {
+    margin: 15px auto 0;
     font-size: 20px;
 }
