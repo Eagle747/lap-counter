@@ -19,7 +19,6 @@ let lapSec = 0
 
 
 function checkGreenBtn() {
-    console.log('check"s Green button')
     switch (greenBtn.innerText){
         case "START": startClock()
             break
@@ -30,7 +29,6 @@ function checkGreenBtn() {
 }
 
 function checkRedBtn() {
-    console.log('red Button')
     if (redBtn.innerText === "RESET") {
         resetAll()
     } else {
@@ -127,7 +125,6 @@ function saveLap() {
     lapSec = 0
     lapHundrethEl.innerText = '00'
     lapEl.innerText = `${lapCount} - 0:00`
-    console.log("save lap time " + lapCount)
 }
 
 function resetAll() {
