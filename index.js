@@ -4,7 +4,7 @@ let timeHundrethEl = document.getElementById("time-hundreth-el")
 let lapEl = document.getElementById("lap-el")
 let lapHundrethEl = document.getElementById("lap-hundreth-el")
 
-let saveEl = document.getElementById("save-el")
+let outputEl = document.getElementById("output-el")
 
 let timerActive = false
 let timer = 0
@@ -77,8 +77,12 @@ function stopClock() {
 }    
 
 function saveLap() {
-    let laptext = `\n${lapEl.innerText}.${lapHundrethEl.innerText}`
-    saveEl.innerText += laptext
+    let laptext = `Lap ${lapEl.innerText}.${lapHundrethEl.innerText}`
+    if (outputEl.innerText == "") {
+        outputEl.innerText = laptext
+    } else {
+        outputEl.innerText = `${laptext}\n${outputEl.innerText}` 
+    }
     lapCount++
     lapEl.innerText = `${lapCount} - 0:00`
     console.log("save lap time" + lapCount)
@@ -106,6 +110,6 @@ function resetAll() {
     lapHundrethEl.innerText = "00"
     console.log("2. HI HI")
     
-    saveEl.innerText = "Lap times:"
+    outputEl.innerText = ""
     
 }
