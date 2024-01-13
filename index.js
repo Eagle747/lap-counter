@@ -8,11 +8,11 @@ let outputEl = document.getElementById("output-el")
 
 let timerActive = false
 let timerHundreth = 0
-let timerTime = 0   // The current time of the timer except for the hundreth seconds
+let timerSec = 0   // The current time of the timer except for the hundreth seconds
 
 let lapCount = 0
 let lapHundreth = 0  // The current time of the lap except for the hundreth seconds
-let lapTime = 0
+let lapSec = 0
 
 function startClock() {
     timerActive = true
@@ -23,7 +23,7 @@ function startClock() {
 }
 
 function convertTime(timeValue, textFrom){
-    console.log(timeValue, timerTime, lapTime, textFrom)
+    console.log(timeValue, timerSec, lapSec, textFrom)
    
     let text = ""
     if (timeValue < 10) {
@@ -41,8 +41,8 @@ function timerRunning() {
 
         // timeHundreth > 100
         if (timerHundreth == 100) {
-            timerTime++
-            timeEl.innerText = convertTime(timerTime, 'TimerTime')
+            timerSec++
+            timeEl.innerText = convertTime(timerSec, 'TimerTime')
             timerHundreth = 0         
         }
         // timeHundreth output
@@ -53,8 +53,8 @@ function timerRunning() {
 
         // lapTimer > 100
         if (lapHundreth == 100) {
-            lapTime++
-            lapEl.innerText = `${lapCount} - ${convertTime(lapTime, 'LapTime')}`
+            lapSec++
+            lapEl.innerText = `${lapCount} - ${convertTime(lapSec, 'LapTime')}`
             lapHundreth = 0 
         }
         // lapHundreth output
@@ -81,7 +81,7 @@ function saveLap() {
     }
     lapCount++
     lapHundreth = 0
-    lapTime = 0
+    lapSec = 0
     lapHundrethEl.innerText = '00'
     lapEl.innerText = `${lapCount} - 0:00`
     console.log("save lap time " + lapCount)
@@ -91,11 +91,11 @@ function saveLap() {
 function resetAll() {
     timerActive = false
     timerHundreth = 0
-    timerTime = 0
+    timerSec = 0
     
     lapCount = 0
     lapHundreth = 0
-    lapTime = 0
+    lapSec = 0
     
     timeEl.innerText = "0:00"
     timeHundrethEl.innerText = "00"
