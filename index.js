@@ -30,7 +30,6 @@ function convertTime(timeValue, textFrom){
         text += "0"  // If timeValue < 10 add "0"
     }
     text += timeValue    
-    console.log(timeValue, timerTime, lapTime, textFrom, 'after')
     return(text)
 }
     
@@ -55,7 +54,7 @@ function timerRunning() {
         // lapTimer > 100
         if (lapHundreth == 100) {
             lapTime++
-            lapEl.innerText = convertTime(lapTime, 'LapTime')
+            lapEl.innerText = `${lapCount} - ${convertTime(lapTime, 'LapTime')}`
             lapHundreth = 0 
         }
         // lapHundreth output
@@ -81,6 +80,7 @@ function saveLap() {
     }
     lapCount++
     lapHundreth = 0
+    lapTime = 0
     lapHundrethEl.innerText = '00'
     lapEl.innerText = `${lapCount} - 0:00`
     console.log("save lap time " + lapCount)
