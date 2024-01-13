@@ -6,6 +6,9 @@ let lapHundrethEl = document.getElementById("lap-hundreth-el")
 
 let outputEl = document.getElementById("output-el")
 
+let greenBtn = document.querySelector(".green-btn")
+let redBtn = document.querySelector(".red-btn")
+
 let timerActive = false
 let timerHundreth = 0
 let timerSec = 0   // The current time of the timer except for the hundreth seconds
@@ -14,12 +17,37 @@ let lapCount = 0
 let lapHundreth = 0  // The current time of the lap except for the hundreth seconds
 let lapSec = 0
 
+
+function checkGreenBtn() {
+    console.log('check"s Green button')
+    switch (greenBtn.innerText){
+        case "START": startClock()
+            break
+        case "LAP": saveLap()
+            break
+        case "CONTINUE": timerContinue()
+    }
+}
+
+function checkRedBtn() {
+    console.log('red Button')
+    if (redBtn.innerText === "RESET") {
+        resetAll()
+    } else {
+        stopClock()
+    }
+}
+
+
 function startClock() {
-    timerActive = true
+    // timerActive = true
     lapCount = 1
     lapEl.innerText = `${lapCount} - 0:00`
-    console.log('clock started')
     timerActive = setInterval(timerRunning, 10)
+
+    // change buttons
+    greenBtn.innerText = "LAP"
+    redBtn.innerText = "STOP"
 }
 
 function convertTime(timeValue, textFrom){
@@ -69,8 +97,23 @@ function timerRunning() {
 function stopClock() {
     clearInterval(timerActive)
     timerActive = false
-    console.log("Stops the clock")
+    let text = `Paused at: ${timeEl.innerText}.${timeHundrethEl.innerText}`
+    outputEl.innerText = `${text}\n${outputEl.innerText}`
+
+    // change buttions
+    greenBtn.innerText = "CONTINUE"
+    redBtn.innerText = "RESET"
 }    
+
+function timerContinue() {
+//    timerActive = true
+    timerActive = setInterval(timerRunning, 10)
+
+    // change buttons
+    greenBtn.innerText = "LAP"
+    redBtn.innerText = "STOP"
+}
+
 
 function saveLap() {
     let laptext = `Lap ${lapEl.innerText}.${lapHundrethEl.innerText}`
@@ -85,7 +128,6 @@ function saveLap() {
     lapHundrethEl.innerText = '00'
     lapEl.innerText = `${lapCount} - 0:00`
     console.log("save lap time " + lapCount)
-    
 }
 
 function resetAll() {
@@ -102,8 +144,9 @@ function resetAll() {
     
     lapEl.innerText = `${lapCount} - 0:00`
     lapHundrethEl.innerText = "00"
-    console.log("Reset HI HI")
     
     outputEl.innerText = ""
-    
+
+    greenBtn.innerText = "START"
+    redBtn.innerText = "RESET"    
 }
