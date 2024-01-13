@@ -19,27 +19,19 @@ function startClock() {
     lapCount = 1
     lapEl.innerText = `${lapCount} - 0:00`
     console.log('clock started')
-    setInterval(timerRunning, 10)
+    setInterval(timerRunning, 100)
 }
 
-function convertTime(){
-    // Increase Seconds 
-    timerTime++
-    timerHundreth = 0
-      
-    
-    // Adjust time-el
+function convertTime(timeValue, textFrom){
+    console.log(timeValue, timerTime, lapTime, textFrom)
+   
     let text = ""
-        // if (timerHours > 0) {
-        // text += timerHours   // Hours
-    
-            
-    // text += timerMinutes + ":"  // minutes
-    if (timerTime < 10) {
-        text += "0"  // If seconds < 10 add "0"
+    if (timeValue < 10) {
+        text += "0"  // If timeValue < 10 add "0"
     }
-    text += timerTime    // seconds    
-    timeEl.innerText = text
+    text += timeValue    
+    console.log(timeValue, timerTime, lapTime, textFrom, 'after')
+    return(text)
 }
     
  
@@ -50,17 +42,26 @@ function timerRunning() {
 
         // timeHundreth > 100
         if (timerHundreth == 100) {
-            convertTime()
-            timerHundreth=0         
+            timerTime++
+            timeEl.innerText = convertTime(timerTime, 'TimerTime')
+            timerHundreth = 0         
         }
         // timeHundreth output
-        if (timerHundreth<10) {
+        if (timerHundreth < 10) {
             timerHundreth='0' + timerHundreth
         }
         timeHundrethEl.innerText = timerHundreth
 
-
-
+        // lapTimer > 100
+        if (lapHundreth == 100) {
+            lapTime++
+            lapEl.innerText = convertTime(lapTime, 'LapTime')
+            lapHundreth = 0 
+        }
+        // lapHundreth output
+        if (lapHundreth < 10) {
+            lapHundreth='0' + lapHundreth
+        }
         lapHundrethEl.innerText = lapHundreth
     }
 }   
@@ -79,8 +80,10 @@ function saveLap() {
         outputEl.innerText = `${laptext}\n${outputEl.innerText}` 
     }
     lapCount++
+    lapHundreth = 0
+    lapHundrethEl.innerText = '00'
     lapEl.innerText = `${lapCount} - 0:00`
-    console.log("save lap time" + lapCount)
+    console.log("save lap time " + lapCount)
     
 }
 
