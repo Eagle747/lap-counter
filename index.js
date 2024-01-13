@@ -19,7 +19,7 @@ function startClock() {
     lapCount = 1
     lapEl.innerText = `${lapCount} - 0:00`
     console.log('clock started')
-    setInterval(timerRunning, 100)
+    timerActive = setInterval(timerRunning, 10)
 }
 
 function convertTime(timeValue, textFrom){
@@ -67,8 +67,9 @@ function timerRunning() {
 
     
 function stopClock() {
-    console.log("Stops the clock")
+    clearInterval(timerActive)
     timerActive = false
+    console.log("Stops the clock")
 }    
 
 function saveLap() {
