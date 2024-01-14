@@ -11,11 +11,11 @@ let redBtn = document.querySelector(".red-btn")
 
 let timerActive = false
 let timerHundreth = 0
-let timerSec = 0   // The current time of the timer except for the hundreth seconds
+let timerArr = [0, 0, 0]   // The current time of the timer except for the hundreth seconds
 
 let lapCount = 0
 let lapHundreth = 0  // The current time of the lap except for the hundreth seconds
-let lapSec = 0
+let lapArr = [0, 0, 0]
 
 
 function checkGreenBtn() {
@@ -47,28 +47,29 @@ function startClock() {
     greenBtn.innerText = "LAP"
     redBtn.innerText = "STOP"
 }
-
-function convertTime(timeValue, textFrom){
-    console.log(timeValue, timerSec, lapSec, textFrom)
    
-    let text = ""
-    if (timeValue < 10) {
-        text += "0"  // If timeValue < 10 add "0"
-    }
-    text += timeValue    
-    return(text)
-}
-    
  
 function timerRunning() {
     if (timerActive) {
         timerHundreth++
         lapHundreth++
 
-        // timeHundreth > 100
+        // timerHundreth > 100
         if (timerHundreth == 100) {
-            timerSec++
-            timeEl.innerText = convertTime(timerSec, 'TimerTime')
+            timerArr[0]++
+            if (timerArr[0] == 60) {  // seconds to min
+                timerArr[0] = 0
+                timerArr[1]++
+                if (timerArr[1] == 60) {  // minutes to hours
+                    timerArr[1] = 0
+                    timerArr[2]++
+                }
+            }
+            timeEl.innerText = 
+                `${(timerArr[2]!=0) ? `${timerArr[2]}:` :  "" }${ 
+                (timerArr[1]<10) ? `0${timerArr[1]}`:`${timerArr[1]}` }:${
+                (timerArr[0]<10) ? `0${timerArr[0]}`:`${timerArr[0]}`   
+                }` 
             timerHundreth = 0         
         }
         // timeHundreth output
@@ -77,10 +78,23 @@ function timerRunning() {
         }
         timeHundrethEl.innerText = timerHundreth
 
+
         // lapTimer > 100
         if (lapHundreth == 100) {
-            lapSec++
-            lapEl.innerText = `${lapCount} - ${convertTime(lapSec, 'LapTime')}`
+            lapArr[0]++
+            if (lapArr[0] == 60) {  // seconds to min
+                lapArr[0] = 0
+                lapArr[1]++
+                if (lapArr[1] == 60) {  // minutes to hours
+                    lapArr[1] = 0
+                    lapArr[2]++
+                }
+            }
+            lapEl.innerText = 
+                `${(lapArr[2]!=0) ? `${lapArr[2]}:` :  "" }${ 
+                (lapArr[1]<10) ? `0${lapArr[1]}`:`${lapArr[1]}` }:${
+                (lapArr[0]<10) ? `0${lapArr[0]}`:`${lapArr[0]}`   
+                }` 
             lapHundreth = 0 
         }
         // lapHundreth output
@@ -122,7 +136,7 @@ function saveLap() {
     }
     lapCount++
     lapHundreth = 0
-    lapSec = 0
+    lapArr = [0, 0, 0]
     lapHundrethEl.innerText = '00'
     lapEl.innerText = `${lapCount} - 0:00`
 }
@@ -130,11 +144,11 @@ function saveLap() {
 function resetAll() {
     timerActive = false
     timerHundreth = 0
-    timerSec = 0
+    timerArr = [0, 0, 0]
     
     lapCount = 0
     lapHundreth = 0
-    lapSec = 0
+    lapArr = [0, 0, 0]
     
     timeEl.innerText = "0:00"
     timeHundrethEl.innerText = "00"
