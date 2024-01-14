@@ -40,7 +40,7 @@ function checkRedBtn() {
 function startClock() {
     // timerActive = true
     lapCount = 1
-    lapEl.innerText = `${lapCount} - 0:00`
+    lapEl.innerText = `${lapCount} - 00:00`
     timerActive = setInterval(timerRunning, 10)
 
     // change buttons
@@ -66,9 +66,9 @@ function timerRunning() {
                 }
             }
             timeEl.innerText = 
-                `${(timerArr[2]!=0) ? `${timerArr[2]}:` :  "" }${ 
-                (timerArr[1]<10) ? `0${timerArr[1]}`:`${timerArr[1]}` }:${
-                (timerArr[0]<10) ? `0${timerArr[0]}`:`${timerArr[0]}`   
+                `${(timerArr[2]!=0) ? `${timerArr[2]}:` :  "" }${   // hours
+                (timerArr[1]<10) ? `0${timerArr[1]}`:`${timerArr[1]}` }:${  // min
+                (timerArr[0]<10) ? `0${timerArr[0]}`:`${timerArr[0]}`   // sec
                 }` 
             timerHundreth = 0         
         }
@@ -91,9 +91,10 @@ function timerRunning() {
                 }
             }
             lapEl.innerText = 
-                `${(lapArr[2]!=0) ? `${lapArr[2]}:` :  "" }${ 
-                (lapArr[1]<10) ? `0${lapArr[1]}`:`${lapArr[1]}` }:${
-                (lapArr[0]<10) ? `0${lapArr[0]}`:`${lapArr[0]}`   
+                `${lapCount} - ${
+                (lapArr[2]!=0) ? `${lapArr[2]}:` :  "" }${  // hours
+                (lapArr[1]<10) ? `0${lapArr[1]}`:`${lapArr[1]}` }:${  // min
+                (lapArr[0]<10) ? `0${lapArr[0]}`:`${lapArr[0]}`   // sec
                 }` 
             lapHundreth = 0 
         }
@@ -138,7 +139,7 @@ function saveLap() {
     lapHundreth = 0
     lapArr = [0, 0, 0]
     lapHundrethEl.innerText = '00'
-    lapEl.innerText = `${lapCount} - 0:00`
+    lapEl.innerText = `${lapCount} - 00:00`
 }
 
 function resetAll() {
@@ -150,10 +151,10 @@ function resetAll() {
     lapHundreth = 0
     lapArr = [0, 0, 0]
     
-    timeEl.innerText = "0:00"
+    timeEl.innerText = "00:00"
     timeHundrethEl.innerText = "00"
     
-    lapEl.innerText = `${lapCount} - 0:00`
+    lapEl.innerText = `${lapCount} - 00:00`
     lapHundrethEl.innerText = "00"
     
     outputEl.innerText = ""
