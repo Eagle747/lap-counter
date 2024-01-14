@@ -109,7 +109,7 @@ function timerRunning() {
 function stopClock() {
     clearInterval(timerActive)
     timerActive = false
-    let text = `Paused at: ${timeEl.innerText}.${timeHundrethEl.innerText}`
+    let text = `Paused: ${timeEl.innerText}.${timeHundrethEl.innerText}`
     outputEl.innerText = `${text}\n${outputEl.innerText}`
 
     // change buttions
