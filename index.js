@@ -127,6 +127,10 @@ function timerContinue() {
     redBtn.innerText = "STOP"
 }
 
+function resetTimeArr (arrTime) {
+    arrTime = [0, 0, 0]
+}
+
 
 function saveLap() {
     let laptext = `Lap ${lapEl.innerText}.${lapHundrethEl.innerText}`
@@ -137,7 +141,7 @@ function saveLap() {
     }
     lapCount++
     lapHundreth = 0
-    lapArr = [0, 0, 0]
+    resetTimeArr(lapArr)
     lapHundrethEl.innerText = '00'
     lapEl.innerText = `${lapCount} - 00:00`
 }
@@ -145,11 +149,11 @@ function saveLap() {
 function resetAll() {
     timerActive = false
     timerHundreth = 0
-    timerArr = [0, 0, 0]
+    resetTimeArr(timerArr)
     
     lapCount = 0
     lapHundreth = 0
-    lapArr = [0, 0, 0]
+    resetTimeArr(lapArr)
     
     timeEl.innerText = "00:00"
     timeHundrethEl.innerText = "00"
