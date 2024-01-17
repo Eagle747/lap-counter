@@ -1,8 +1,8 @@
 let timeEl = document.getElementById("time-el")
-let timeHundrethEl = document.getElementById("time-hundreth-el")
+let timeHundrethEl = document.getElementById("time-hundredth-el")
 
 let lapEl = document.getElementById("lap-el")
-let lapHundrethEl = document.getElementById("lap-hundreth-el")
+let lapHundrethEl = document.getElementById("lap-hundredth-el")
 
 let outputEl = document.getElementById("output-el")
 
@@ -11,10 +11,10 @@ let redBtn = document.querySelector(".red-btn")
 
 let timerActive = false
 let timerHundreth = 0
-let timerArr = [0, 0, 0]   // The current time of the timer except for the hundreth seconds
+let timerArr = [0, 0, 0]   // The current time of the timer except for the hundredth seconds
 
 let lapCount = 0
-let lapHundreth = 0  // The current time of the lap except for the hundreth seconds
+let lapHundreth = 0  // The current time of the lap except for the hundredth seconds
 let lapArr = [0, 0, 0]
 
 
